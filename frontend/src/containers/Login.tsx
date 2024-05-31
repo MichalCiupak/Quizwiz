@@ -23,7 +23,7 @@ const Login = () => {
     <div className='login-container'>
       <div className='login-content-container'>
         <div>
-          <img src={quizIco} alt="Logo" className="logo"/>
+          <img src={quizIco} alt="Logo" className="logo-login"/>
           <div className='logo-label'>Quizwiz</div>
           <div className='login-label'>Log In</div>
           <div className='instruction-label'>Log in by entering your email address and password.</div>
@@ -56,7 +56,7 @@ const Login = () => {
             </div>
             <hr />
             <div className='button-container'>
-              <div className="new-account-button" onClick={() => navigate('/register')}>New account</div>
+              <div className="new-account-button" onClick={() => navigate('/Register')}>New account</div>
             </div>
             
           </form>

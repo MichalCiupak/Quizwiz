@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 
 .navigation-container {
   background-color: white;
@@ -10,11 +10,12 @@
 
 .logo-container {
   display: flex;
+
 }
 
 .logo {
-  width: 60px; 
-  height: auto; 
+  width: auto; 
+  height: 70px; 
   display: flex;
 }
 

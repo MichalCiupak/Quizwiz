@@ -65,7 +65,7 @@ const Register = () => {
             </div>
             <hr />
             <div className='button-container'>
-              <div className="new-account-button" onClick={() => navigate('/')}>I already have an account. Log in</div>
+              <div className="new-account-button" onClick={() => navigate('/Login')}>I already have an account. Log in</div>
             </div>
             
           </form>

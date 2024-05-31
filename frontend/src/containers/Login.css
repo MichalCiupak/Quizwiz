@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 .login-container {
   background-color: white;
   
 }
 
 .login-content-container {
-
   width: 30vw;
   margin: auto;
 }
-.logo {
+.logo-login {
   width: 180px; 
   height: auto; 
   margin: auto;
@@ -16,6 +17,7 @@
 }
 
 .logo-label {
+  font-family: 'Audiowide', sans-serif;
   color: #FF6624;
   text-align: center;
   font-size: 2.5rem;

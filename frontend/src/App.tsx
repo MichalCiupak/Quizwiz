@@ -4,14 +4,18 @@ import './App.css';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Saved from './containers/Saved';
+import NewSet from './containers/NewSet';
+import Profile from './containers/Profile';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />}/>
-        <Route path="/register" element={<Register />}/>
-        <Route path="/saved" element={<Saved />}/>
+        <Route path="/Login" element={<Login />}/>
+        <Route path="/Register" element={<Register />}/>
+        <Route path="/Saved" element={<Saved />}/>
+        <Route path="/NewSet" element={<NewSet />}/>
+        <Route path="/Profile" element={<Profile />}/>
       </Routes>
     </Router>
   );
