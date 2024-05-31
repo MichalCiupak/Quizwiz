@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+.navigation-container {
+  background-color: white;
+  display: flex;
+  border-bottom: 2px solid rgb(117, 117, 117);
+  padding: 15px 25px;
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  display: flex;
+}
+
+.logo {
+  width: 60px; 
+  height: auto; 
+  display: flex;
+}
+
+.logo-label {
+  font-family: 'Audiowide', sans-serif;
+  color: #FF6624;
+  text-align: center;
+  font-size: 2rem;
+  padding: 10px 0 0 0;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.browser-container {
+  min-width: 30vw;
+  padding: 0 10rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 3px solid #FFA382;
+  border-radius: 1.5em;
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 3em;
+
+}
+
+input::placeholder {
+  color: #FFA382; 
+
+}
+
+input:focus {
+  border-color: #d68b70;
+  outline: none;
+  box-shadow: 0 0 8px #ba7962;
+}
+
+.navigation-link {
+  display: flex;
+  font-family: 'Audiowide', sans-serif;
+  color: #FFA382; 
+  text-decoration: none; 
+  font-weight: 500;
+  margin: 10px;
+  padding: 0 10px; 
+  border-radius: 4px; 
+  transition: background-color 0.3s ease;
+  align-items: center;
+  font-size: 30px;
+}
+
+.navigation-link:hover {
+  color: #AF3A11; 
+}
+
+.link-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
