@@ -34,3 +34,52 @@
   background-color: #8a2f0d;
   padding: 22px;
 }
+
+.card-container {
+  margin: 80px;
+}
+
+.profile-attribute {
+  display: flex;
+  margin: 35px 0;
+}
+
+.profile-attribute-name {
+  color: #FF8351;
+  font-size: 25px;
+  width: 15vw;
+}
+
+.profile-attribute-value {
+  color: #FF8351;
+  font-size: 25px;
+}
+
+.card-navigation-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50vw;
+  margin: auto;
+  color: #393939;
+}
+
+.arrows-container {
+  display: flex;
+  width: 20vw;
+  justify-content: space-evenly;
+}
+
+.card-number {
+  font-size: 3.5rem;
+  color: #000000;
+}
+
+.card-navigation-element {
+  font-size: 4rem;
+  cursor: pointer;
+}
+
+.card-navigation-element:hover {
+  color: #000000;
+}
+

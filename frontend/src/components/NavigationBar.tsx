@@ -18,13 +18,6 @@ const NavigationBar: React.FC<Props> = ({location}) => {
     }
   }
 
-  // const handleSearch = (searchPhrase: string) => {
-  //   setSearchTerm(searchPhrase)
-  //   if (searchPhrase) {
-  //     navigate(`/Search/${searchPhrase}`)
-  //   }
-    
-  // }
 
   return (
     <div className='navigation-container'>

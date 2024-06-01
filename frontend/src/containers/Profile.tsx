@@ -25,7 +25,26 @@ const Profile = () => {
               My Profile Data
             </div>
             <hr />
-            
+            <div className='profile-attributes-container'>
+              <div className='profile-attribute'>
+                <div className='profile-attribute-name'>
+                  Email
+                </div>
+                <div className='profile-attribute-value'>
+                  email@address.com
+                </div>
+              </div>
+              <div className='profile-attribute'>
+                <div className='profile-attribute-name'>
+                  Username
+                </div>
+                <div className='profile-attribute-value'>
+                  sebaplam123
+                </div>
+              </div>
+
+            </div>
+            <hr/>
           </div>
         </div>
         <div className='button-container'>
