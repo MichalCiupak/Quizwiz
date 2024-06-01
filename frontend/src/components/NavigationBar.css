@@ -68,11 +68,11 @@ input:focus {
   border-radius: 4px; 
   transition: background-color 0.3s ease;
   align-items: center;
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .navigation-link:hover {
-  color: #AF3A11; 
+  color: #AF3A11 !important;
 }
 
 .link-container {

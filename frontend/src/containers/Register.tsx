@@ -23,7 +23,7 @@ const Register = () => {
     <div className='login-container'>
       <div className='login-content-container'>
         <div>
-          <img src={quizIco} alt="Logo" className="logo"/>
+          <img src={quizIco} alt="Logo" className="logo-login"/>
           <div className='logo-label'>Quizwiz</div>
           <div className='login-label'>Sign Up</div>
           <div className='instruction-label'>Create new account and start preparing for your exams!</div>

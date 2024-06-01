@@ -1,0 +1,32 @@
+.profile-main-content {
+  margin: 2rem;
+}
+
+.section-container {
+  margin-top: 70px;
+}
+
+.section-header-text {
+  font-family: 'Audiowide', sans-serif;
+  color: #AF3A11;
+  font-size: 2.3rem;
+  font-weight: 400;
+}
+
+.new-cardset-button {
+  background-color: #AF3A11;
+  color: #fff; 
+  padding: 20px; 
+  font-size: 26px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  margin: auto;
+  width: 23vw;
+  font-weight: 700;
+  text-align: center;
+}
+
+.new-cardset-button:hover {
+  background-color: #8a2f0d;
+  padding: 22px;
+}
