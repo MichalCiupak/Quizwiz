@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './NavigationBar.css'
 import quizIco from '../assets/quizwizico.png';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   location: string;
@@ -9,6 +10,21 @@ type Props = {
 
 const NavigationBar: React.FC<Props> = ({location}) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (searchTerm && event.key === 'Enter') {
+      navigate(`/Search/${searchTerm}`)
+    }
+  }
+
+  // const handleSearch = (searchPhrase: string) => {
+  //   setSearchTerm(searchPhrase)
+  //   if (searchPhrase) {
+  //     navigate(`/Search/${searchPhrase}`)
+  //   }
+    
+  // }
 
   return (
     <div className='navigation-container'>
@@ -22,6 +38,7 @@ const NavigationBar: React.FC<Props> = ({location}) => {
           placeholder="Look for flashcards!"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleSearch}
         />
       </div>
       <div className='link-container'>

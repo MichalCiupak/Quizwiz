@@ -1,4 +1,8 @@
-.profile-main-content {
+.container-container {
+  min-height: 101vh;
+}
+
+.container-main-content {
   margin: 2rem;
 }
 

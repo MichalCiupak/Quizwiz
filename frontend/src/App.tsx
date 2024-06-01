@@ -6,6 +6,7 @@ import Register from './containers/Register';
 import Saved from './containers/Saved';
 import NewSet from './containers/NewSet';
 import Profile from './containers/Profile';
+import SearchSet from './containers/SearchSet';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Saved" element={<Saved />}/>
         <Route path="/NewSet" element={<NewSet />}/>
         <Route path="/Profile" element={<Profile />}/>
+        <Route path="/Search/:searchPhrase" element={<SearchSet />}/>
       </Routes>
     </Router>
   );

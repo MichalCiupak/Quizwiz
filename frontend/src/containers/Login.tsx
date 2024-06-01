@@ -52,7 +52,7 @@ const Login = () => {
             </div>
             <div className='forgot-password-label'>Forgot your password?</div>
             <div className='button-container'>
-              <div className="login-button">Log in</div>
+              <div className="login-button"  onClick={() => navigate('/Saved')}>Log in</div>
             </div>
             <hr />
             <div className='button-container'>

@@ -2,16 +2,18 @@ import React from 'react'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
+import { useParams } from 'react-router-dom';
 
-const NewSet = () => {
+const SearchSet = () => {
+  const { searchPhrase } = useParams();
   return (
     <div className='container-container'>
-      <NavigationBar location='newset'/>
+      <NavigationBar location=''/>
       <div className='container-main-content'> 
         <div className='section-container'>
           <div className='section-header-container'>
             <div className='section-header-text'>
-              Recenty Added
+              Results for "{searchPhrase}"
             </div>
             <hr />
             
@@ -23,4 +25,4 @@ const NewSet = () => {
   )
 }
 
-export default NewSet
+export default SearchSet

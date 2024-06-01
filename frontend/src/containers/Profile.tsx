@@ -1,15 +1,15 @@
 import React from 'react'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
-import './Profile.css'
+import './Containers.css'
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const navigate = useNavigate();
   return (
-    <div className='profile-container'>
+    <div className='container-container'>
       <NavigationBar location='profile'/>
-      <div className='profile-main-content'> 
+      <div className='container-main-content'> 
         <div className='section-container'>
           <div className='section-header-container'>
             <div className='section-header-text'>
