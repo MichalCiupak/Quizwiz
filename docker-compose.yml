@@ -1,0 +1,22 @@
+services:
+  quizwiz:
+    build: ./quizwiz-backend
+    ports:
+      - "8000:8000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    environment:
+      DATABASE_HOST: mongodb
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+      DATABASE_PORT: 27017
+  mongodb:
+    image: mongo:8.0-rc
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - '27017:27017'
