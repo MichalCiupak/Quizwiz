@@ -1,0 +1,58 @@
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+    color: #FFE2D8;
+  }
+  to {
+    transform: rotateY(180deg);
+    color: #FFE2D8;
+  }
+}
+
+.card-main-container {
+  width: 40vw;
+  height: 35vh;
+  margin: auto;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4rem;
+  
+}
+
+.card-main-container-animate {
+  width: 40vw;
+  height: 35vh;
+  margin: auto;
+  align-items: center;
+  animation: rotate 1s linear;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  
+}
+
+
+.card-text {
+  margin-top: 50px;
+  padding: 50px 30px;
+  font-size: 22px;
+  text-align: center;
+  height: 60%;
+  background-color: #FFE2D8;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  border: #838383 solid 2px;
+}
+
+.card-hint {
+  font-size: 22px;
+  text-align: center;
+  background-color: #FFC3AE;
+  padding: 15px;
+  border-bottom-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
+  border: #838383 solid 2px;
+}
+
+
+
+
