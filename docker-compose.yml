@@ -1,18 +1,18 @@
 services:
-  #  quizwiz:
-  #    build: ./quizwiz-backend
-  #    ports:
-  #      - "8080:8080"
-  #    links:
-  #      - mongodb
-  #    depends_on:
-  #      - mongodb
-  #    environment:
-  #      DATABASE_HOST: mongodb
-  #      DATABASE_AUTH: admin
-  #      DATABASE_USER: root
-  #      DATABASE_PASSWORD: password
-  #      DATABASE_PORT: 27017
+  quizwiz:
+    build: ./quizwiz-backend
+    ports:
+      - "8080:8080"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    environment:
+      DATABASE_HOST: mongodb
+      DATABASE_AUTH: admin
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+      DATABASE_PORT: 27017
 
   mongodb:
     image: mongo:8.0-rc
