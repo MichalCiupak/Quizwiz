@@ -1,21 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 import quizIco from '../assets/quizwizico.png';
 import Footer from '../components/Footer';
+import AxiosInstance from '../utils/AxiosInstance';
 
 const Login = () => {
-  const [email, setEmail] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
+  const [isDataInvalid, setIsDataInvalid] = useState<boolean>(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    navigate('/');
+  const handleLogin = () => {
+    if (userName && password) {
+
+      try {
+
+        const axiosInstance = AxiosInstance(userName, password);
+             
+        axiosInstance.get('/auth/login')
+          .then(response => {
+            console.log(response.data);
+            setIsDataInvalid(false);
+            localStorage.setItem('username', userName);
+            localStorage.setItem('password', password);
+            navigate('/Profile')
+          })
+          .catch(error => {
+            console.error(error);
+            setIsDataInvalid(true);
+          });
+        
+      } catch (error) {
+          console.error('Błąd:', error);
+          setIsDataInvalid(true);
+      }
+      
+    }
+    else {
+      setIsDataInvalid(true);
+    }
   };
 
 
@@ -26,16 +52,16 @@ const Login = () => {
           <img src={quizIco} alt="Logo" className="logo-login"/>
           <div className='logo-label'>Quizwiz</div>
           <div className='login-label'>Log In</div>
-          <div className='instruction-label'>Log in by entering your email address and password.</div>
+          <div className='instruction-label'>Log in by entering your user name and password.</div>
         </div>
         <div className='login-form'>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className='form-input'>
-              <div className='form-input-label'><FontAwesomeIcon icon={faEnvelope} /> Email address  </div>
+              <div className='form-input-label'><FontAwesomeIcon icon={faUser} /> Username  </div>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 required
                 placeholder='Enter your email'
               />
@@ -50,9 +76,14 @@ const Login = () => {
                 placeholder='Enter your password'
               />
             </div>
-            <div className='forgot-password-label'>Forgot your password?</div>
+            {/* <div className='forgot-password-label'>Forgot your password?</div> */}
+            {isDataInvalid ? (
+              <div className='bad-data-hint'>Invalid data!</div>
+            ) : (
+              <div></div>
+            )}
             <div className='button-container'>
-              <div className="login-button"  onClick={() => navigate('/Saved')}>Log in</div>
+              <div className="login-button"  onClick={() => handleLogin()}>Log in</div>
             </div>
             <hr />
             <div className='button-container'>

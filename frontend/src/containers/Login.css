@@ -91,6 +91,13 @@ input:focus {
   text-align: center;
 }
 
+.bad-data-hint {
+  text-align: center;
+  color: #dc1818;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .login-button:hover {
   background-color: #b54015; 
 }
@@ -112,4 +119,58 @@ input:focus {
 
 .new-account-button:hover {
   background-color: #efefef; 
+}
+
+.container-create-card-form{
+  margin: 3rem auto;
+  width: 50vw;
+
+}
+
+
+.create-card-button {
+  margin: 20px auto;
+  color: #fff;
+  background-color: #DC4C18;
+  padding: 10px;
+  width: 15vw;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 1.2rem;
+}
+
+.create-card-button-submit {
+  margin: 70px auto 0 auto;
+  color: #fff;
+  background-color: #DC4C18;
+  padding: 15px;
+  width: 20vw;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 1.4rem;
+}
+
+.create-card-button:hover {
+
+  background-color: #a73b13;
+  cursor: pointer;
+}
+
+.create-card-button-submit:hover {
+
+  background-color: #a73b13;
+  cursor: pointer;
+}
+
+.create-set-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.single-card-create-container {
+  background-color: #FFC3AE;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 30px;
+  border: #a73b13 solid 2px;
 }

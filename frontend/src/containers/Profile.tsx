@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
-import { useNavigate } from 'react-router-dom';
+import { useFetcher, useNavigate } from 'react-router-dom';
+import AxiosInstance from '../utils/AxiosInstance';
+import { IUser } from '../utils/Interfaces';
+import axios, { AxiosResponse } from 'axios';
 
 const Profile = () => {
   const navigate = useNavigate();
+  const storedUserName = localStorage.getItem('username');
+  const storedPassword = localStorage.getItem('password');
+  const [user, setUser] = useState<IUser>();
+
+  useEffect(() => {
+    if (storedPassword && storedUserName) {
+      try {
+
+        const axiosInstance = AxiosInstance(storedUserName, storedPassword)
+             
+        axiosInstance.get<IUser>('/user')
+          .then((response: AxiosResponse<IUser>) => {
+            const userData: IUser = response.data;
+            setUser(userData);
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        
+      } catch (error) {
+          console.error('Błąd:', error);
+      }
+    }
+    
+
+
+  }, []);
   return (
     <div className='container-container'>
       <NavigationBar location='profile'/>
@@ -31,7 +62,7 @@ const Profile = () => {
                   Email
                 </div>
                 <div className='profile-attribute-value'>
-                  email@address.com
+                {user?.email}
                 </div>
               </div>
               <div className='profile-attribute'>
@@ -39,7 +70,7 @@ const Profile = () => {
                   Username
                 </div>
                 <div className='profile-attribute-value'>
-                  sebaplam123
+                  {user?.username}
                 </div>
               </div>
 
@@ -48,7 +79,7 @@ const Profile = () => {
           </div>
         </div>
         <div className='button-container'>
-          <div className="new-cardset-button" onClick={() => navigate('/Newset')}>Create New Card Set!</div>
+          <div className="new-cardset-button" onClick={() => navigate('/CreateSet')}>Create New Card Set!</div>
         </div>
       </div>
       <Footer/>
