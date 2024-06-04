@@ -1,23 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 import quizIco from '../assets/quizwizico.png';
 import Footer from '../components/Footer';
+import axios from 'axios';
 
 const Register = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
+  const [isDataInvalid, setIsDataInvalid] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    navigate('/');
+  const handleSubmit = async () => {
+    console.log("hande")
+    if (email && password && userName) {
+      const user = {
+        "username": userName,
+        "email": email,
+        "password": password
+      };
+  
+      try {
+        const response = await axios.post('http://localhost:8080/api/v1/auth/register', user);
+        console.log("ad")
+        console.log('Success:', response.data);
+        setIsDataInvalid(false);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+      
+    }
+    else {
+      setIsDataInvalid(true);
+    }
   };
+
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+
+            const API_URL = 'http://localhost:8080/api/v1'; // Adres URL API Swaggera
+            
+            // Ustaw login i hasło
+            const username = 'string';
+            const password = 'string';
+            
+            // Ustaw nagłówki żądania z uwierzytelnieniem Basic Auth
+            const axiosInstance = axios.create({
+              baseURL: API_URL,
+              auth: {
+                username: username,
+                password: password
+              },
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              }
+            });
+            
+            axiosInstance.get('/auth/login')
+              .then(response => {
+                console.log(response.data);
+              })
+              .catch(error => {
+                console.error(error);
+              });
+            
+          } catch (error) {
+              console.error('Błąd:', error);
+          }
+      };
+
+      fetchData();
+  }, []);
 
   return (
     <div className='login-container'>
@@ -60,9 +118,15 @@ const Register = () => {
                 placeholder='Enter your Username'
               />
             </div>
+            {isDataInvalid ? (
+              <div className='bad-data-hint'>Invalid data!</div>
+            ) : (
+              <div></div>
+            )}
             <div className='button-container'>
-              <div className="login-button">Sign Up</div>
+              <div className="login-button" onClick={() => handleSubmit()}>Sign Up</div>
             </div>
+            
             <hr />
             <div className='button-container'>
               <div className="new-account-button" onClick={() => navigate('/Login')}>I already have an account. Log in</div>
