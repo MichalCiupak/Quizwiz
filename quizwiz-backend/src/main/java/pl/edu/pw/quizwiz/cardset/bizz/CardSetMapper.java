@@ -17,7 +17,7 @@ public class CardSetMapper {
         cardSetView.setName(cardSetDoc.getName());
         cardSetView.setCategory(cardSetDoc.getCategory());
         cardSetView.setKeywords(Collections.unmodifiableSet(cardSetDoc.getKeywords()));
-        cardSetView.setFlashcards((LinkedHashSet<Flashcard>) Collections.unmodifiableSet(cardSetDoc.getFlashcards()));
+        cardSetView.setFlashcards(Collections.unmodifiableSet(cardSetDoc.getFlashcards()));
         return cardSetView;
     }
 }
