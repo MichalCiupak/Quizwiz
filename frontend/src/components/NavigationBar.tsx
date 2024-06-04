@@ -18,6 +18,11 @@ const NavigationBar: React.FC<Props> = ({location}) => {
     }
   }
 
+  const handleLogOut = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+  }
+
 
   return (
     <div className='navigation-container'>
@@ -38,7 +43,7 @@ const NavigationBar: React.FC<Props> = ({location}) => {
         <Link className='navigation-link' to={'/Saved'}  style={{ color: location === 'saved' ? '#AF3A11' : '#FFA382' }}>Saved</Link>
         <Link className='navigation-link' to={'/NewSet'} style={{ color: location === 'newset' ? '#AF3A11' : '#FFA382' }}>New Set</Link>
         <Link className='navigation-link' to={'/Profile'} style={{ color: location === 'profile' ? '#AF3A11' : '#FFA382' }}>Profile</Link>
-        <Link className='navigation-link' to={'/Login'}>Log out</Link>
+        <Link className='navigation-link' onClick={() => handleLogOut()} to={'/Login'}>Log out</Link>
       </div>
     </div>
   )

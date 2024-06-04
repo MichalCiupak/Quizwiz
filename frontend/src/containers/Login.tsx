@@ -30,10 +30,12 @@ const Login = () => {
           })
           .catch(error => {
             console.error(error);
+            setIsDataInvalid(true);
           });
         
       } catch (error) {
           console.error('Błąd:', error);
+          setIsDataInvalid(true);
       }
       
     }

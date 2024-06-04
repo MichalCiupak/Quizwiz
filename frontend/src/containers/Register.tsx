@@ -30,6 +30,7 @@ const Register = () => {
         navigate('/Login')
       } catch (error) {
         console.error('Error:', error);
+        setIsDataInvalid(true);
       }
       
     }
