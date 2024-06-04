@@ -4,12 +4,16 @@ import Footer from '../components/Footer'
 import './Containers.css'
 import axios from 'axios';
 import { IFlashcard, IFlashcardSet } from '../utils/Interfaces';
+import AxiosInstance from '../utils/AxiosInstance';
 
 const CreateSet = () => {
+  const storedUserName = localStorage.getItem('username');
+  const storedPassword = localStorage.getItem('password');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [keywords, setKeywords] = useState(['']);
   const [flashcards, setFlashcards] = useState([{ question: '', answer: '' }]);
+  const [isDataInvalid, setIsDataInvalid] = useState<boolean>(false);
 
   const handleAddFlashcard = () => {
     setFlashcards([...flashcards, { question: '', answer: '' }]);
@@ -22,21 +26,34 @@ const CreateSet = () => {
     setFlashcards(updatedFlashcards);
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    const data = {
-      name,
-      category,
-      keywords,
-      flashcards
-    };
-
-    try {
-      const response = await axios.post('http://localhost:8080/api/v1/flashcards', data);
-      console.log('Success:', response.data);
-    } catch (error) {
-      console.error('Error:', error);
+  const handleSubmit = async () => {
+    if (name && category && storedUserName && storedPassword) {
+      const data = {
+        "name": name,
+        "category": category,
+        "keywords": keywords,
+        "flashcards": flashcards
+      };
+      const axiosInstance = AxiosInstance(storedUserName, storedPassword)
+      try {
+        axiosInstance.post('/flashcards', data)
+          .then(response => {
+            console.log(response.data);
+          })
+        .catch(error => {
+          console.error(error);
+        });
+      } catch (error) {
+        console.error('Error:', error);
+        setIsDataInvalid(true)
+      }
     }
+    else {
+      setIsDataInvalid(true)
+    }
+    
+
+    
   };
 
   return (
@@ -83,6 +100,7 @@ const CreateSet = () => {
                 placeholder='Enter the keywords' 
               />
             </div >
+            
             {flashcards.map((flashcard, index) => (
               <div key={index} className='single-card-create-container'>
                 <h2>Flashcard {index + 1}</h2>
@@ -108,9 +126,14 @@ const CreateSet = () => {
                 </div>
               </div>
             ))}
+            {isDataInvalid ? (
+              <div className='bad-data-hint'>Invalid data!</div>
+            ) : (
+              <div></div>
+            )}
             <div className='create-card-button-container'>
-              <div className='create-card-button' onClick={handleAddFlashcard}>Add Another Flashcard</div>
-              <div className='create-card-button-submit'>Submit</div>
+              <div className='create-card-button' onClick={() => handleAddFlashcard()}>Add Another Flashcard</div>
+              <div className='create-card-button-submit' onClick={() => handleSubmit()}>Submit</div>
             </div>
             
           </form>
