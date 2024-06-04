@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const navigate = useNavigate();
+  const storedUserName = localStorage.getItem('username');
+  const storedPassword = localStorage.getItem('password');
   return (
     <div className='container-container'>
       <NavigationBar location='profile'/>
@@ -39,7 +41,7 @@ const Profile = () => {
                   Username
                 </div>
                 <div className='profile-attribute-value'>
-                  sebaplam123
+                  sebaplam123{storedPassword}
                 </div>
               </div>
 

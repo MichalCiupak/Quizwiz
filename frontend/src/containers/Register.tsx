@@ -15,19 +15,19 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    console.log("hande")
     if (email && password && userName) {
       const user = {
         "username": userName,
         "email": email,
         "password": password
       };
+      console.log(user)
   
       try {
         const response = await axios.post('http://localhost:8080/api/v1/auth/register', user);
-        console.log("ad")
         console.log('Success:', response.data);
         setIsDataInvalid(false);
+        navigate('/Login')
       } catch (error) {
         console.error('Error:', error);
       }
@@ -38,44 +38,7 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-      const fetchData = async () => {
-          try {
-
-            const API_URL = 'http://localhost:8080/api/v1'; // Adres URL API Swaggera
-            
-            // Ustaw login i hasło
-            const username = 'string';
-            const password = 'string';
-            
-            // Ustaw nagłówki żądania z uwierzytelnieniem Basic Auth
-            const axiosInstance = axios.create({
-              baseURL: API_URL,
-              auth: {
-                username: username,
-                password: password
-              },
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              }
-            });
-            
-            axiosInstance.get('/auth/login')
-              .then(response => {
-                console.log(response.data);
-              })
-              .catch(error => {
-                console.error(error);
-              });
-            
-          } catch (error) {
-              console.error('Błąd:', error);
-          }
-      };
-
-      fetchData();
-  }, []);
+  
 
   return (
     <div className='login-container'>
