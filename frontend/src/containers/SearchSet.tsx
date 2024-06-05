@@ -15,7 +15,6 @@ const SearchSet = () => {
   const { searchPhrase } = useParams();
   const [userSets, setUserSets] = useState<IFlashcardSet[]>();
 
-
   useEffect(() => {
     const storedFlashcardSets = localStorage.getItem('flashcardSets');
     if (storedFlashcardSets && searchPhrase) {
@@ -24,7 +23,6 @@ const SearchSet = () => {
       setUserSets(filteredFlashcardSets);
     }
   }, [searchPhrase]);
-
 
   const removeFlashcardSet = (id: string) => {
     setUserSets(userSets => userSets?.filter(set => set.id !== id));
@@ -40,10 +38,8 @@ const SearchSet = () => {
               Results for "{searchPhrase}"
             </div>
             <hr />
-            
           </div>
           <div className='section-cardset-container'>
-
             {userSets?.map((flashcard: IFlashcardSet, index: number) => (
               <CardTile cardSet={flashcard} key={index} onRefresh={removeFlashcardSet}/>
             ))}

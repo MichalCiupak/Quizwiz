@@ -1,9 +1,8 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
-import axios from 'axios';
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IFlashcard, IFlashcardSet } from '../utils/Interfaces';
 import AxiosInstance from '../utils/AxiosInstance';
 
@@ -45,7 +44,6 @@ const CreateSet = () => {
   };
 
   const handleSubmit = async () => {
-    
     if (name && category && storedUserName && storedPassword) {
       const data = {
         "name": name,
@@ -84,9 +82,6 @@ const CreateSet = () => {
     else {
       setIsDataInvalid(true)
     }
-    
-
-    
   };
 
   return (
@@ -100,7 +95,6 @@ const CreateSet = () => {
             </div>
             <hr />
           </div>
-          
         </div>
         <div className='container-create-card-form'>
           <form onSubmit={handleSubmit}>
@@ -133,7 +127,6 @@ const CreateSet = () => {
                 placeholder='Enter the keywords' 
               />
             </div >
-            
             {flashcards.map((flashcard, index) => (
               <div key={index} className='single-card-create-container'>
                 <h2>Flashcard {index + 1}</h2>
@@ -168,7 +161,6 @@ const CreateSet = () => {
               <div className='create-card-button' onClick={() => handleAddFlashcard()}>Add Another Flashcard</div>
               <div className='create-card-button-submit' onClick={() => handleSubmit()}>Submit</div>
             </div>
-            
           </form>
         </div>
       </div>

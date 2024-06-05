@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AxiosInstance from '../utils/AxiosInstance';
 import { IUser } from '../utils/Interfaces';
-import axios, { AxiosResponse } from 'axios';
-import { IFlashcardSet, IFlashcard } from '../utils/Interfaces';
+import { AxiosResponse } from 'axios';
+import { IFlashcardSet } from '../utils/Interfaces';
 import CardTile from '../components/CardTile';
 
 const Profile = () => {
@@ -30,13 +30,10 @@ const Profile = () => {
           .catch(error => {
             console.error(error);
           });
-        
       } catch (error) {
           console.error('Błąd:', error);
       }
     }
-
-
   }, []);
 
   const fetchUserSets = async () => {
@@ -49,18 +46,15 @@ const Profile = () => {
             setUserSets(userset);
             localStorage.setItem('flashcardSets', JSON.stringify(userset));
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(response.data);
           })
           .catch(error => {
             console.error(error);
           });
-        
       } catch (error) {
           console.error('Błąd:', error);
       }
     }
   };
-
   useEffect(() => {
     fetchUserSets();
   }, [user]);
@@ -68,7 +62,6 @@ const Profile = () => {
   const removeFlashcardSet = (id: string) => {
     setUserSets(userSets => userSets?.filter(set => set.id !== id));
   };
-
 
   return (
     <div className='container-container'>
@@ -80,10 +73,8 @@ const Profile = () => {
               My Cards Sets
             </div>
             <hr />
-            
           </div>
           <div className='section-cardset-container'>
-
             {userSets?.map((flashcard: IFlashcardSet, index: number) => (
               <CardTile cardSet={flashcard} key={index} onRefresh={removeFlashcardSet}/>
             ))}
@@ -112,7 +103,6 @@ const Profile = () => {
                   {user?.username}
                 </div>
               </div>
-
             </div>
             <hr/>
           </div>

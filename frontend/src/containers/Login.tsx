@@ -15,11 +15,8 @@ const Login = () => {
 
   const handleLogin = () => {
     if (userName && password) {
-
       try {
-
-        const axiosInstance = AxiosInstance(userName, password);
-             
+        const axiosInstance = AxiosInstance(userName, password); 
         axiosInstance.get('/auth/login')
           .then(response => {
             console.log(response.data);
@@ -37,7 +34,6 @@ const Login = () => {
           console.error('Błąd:', error);
           setIsDataInvalid(true);
       }
-      
     }
     else {
       setIsDataInvalid(true);
@@ -76,7 +72,6 @@ const Login = () => {
                 placeholder='Enter your password'
               />
             </div>
-            {/* <div className='forgot-password-label'>Forgot your password?</div> */}
             {isDataInvalid ? (
               <div className='bad-data-hint'>Invalid data!</div>
             ) : (
@@ -89,7 +84,6 @@ const Login = () => {
             <div className='button-container'>
               <div className="new-account-button" onClick={() => navigate('/Register')}>New account</div>
             </div>
-            
           </form>
         </div>
       </div>

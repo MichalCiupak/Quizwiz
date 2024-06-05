@@ -21,8 +21,6 @@ const Register = () => {
         "email": email,
         "password": password
       };
-      console.log(user)
-  
       try {
         const response = await axios.post('http://localhost:8080/api/v1/auth/register', user);
         console.log('Success:', response.data);
@@ -32,14 +30,11 @@ const Register = () => {
         console.error('Error:', error);
         setIsDataInvalid(true);
       }
-      
     }
     else {
       setIsDataInvalid(true);
     }
   };
-
-  
 
   return (
     <div className='login-container'>
@@ -90,18 +85,15 @@ const Register = () => {
             <div className='button-container'>
               <div className="login-button" onClick={() => handleSubmit()}>Sign Up</div>
             </div>
-            
             <hr />
             <div className='button-container'>
               <div className="new-account-button" onClick={() => navigate('/Login')}>I already have an account. Log in</div>
-            </div>
-            
+            </div>    
           </form>
         </div>
       </div>
       <Footer/>
     </div>
-
   )
 }
 

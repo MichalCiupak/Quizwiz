@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
@@ -16,14 +16,22 @@ const DisplaySet = () => {
   const storedUserName = localStorage.getItem('username');
   const storedPassword = localStorage.getItem('password');
   const storedUserId = localStorage.getItem('userId');
-  
-  
+  const [starStyle, setStarStyle] = useState<string>('');
   const location = useLocation();
   const flashcardSet = location.state?.cardSet as IFlashcardSet;
   const [flashcardList, setFlashcardList] = useState<IFlashcard[]>(flashcardSet.flashcards);
   
   const currentFlashcard = flashcardList[currentIndex];
-  console.log(flashcardSet.id)
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser){
+      const user: IUser = JSON.parse(storedUser);
+      if (user?.savedCardSets.includes(flashcardSet.id)){
+        setStarStyle('star-icon-big');
+      }
+    }
+  }, []);
 
   const handleNext = () => {
     if (currentIndex < flashcardList.length - 1) {
@@ -40,7 +48,12 @@ const DisplaySet = () => {
   };
 
   const handleSave = () => {
-    console.log("handle")
+    if (starStyle === 'star-icon-big'){
+      setStarStyle('');
+    }
+    else {
+      setStarStyle('star-icon-big');
+    }
     const storedUser = localStorage.getItem('user');
     
     if (storedUserName && storedPassword && storedUser) {
@@ -55,13 +68,10 @@ const DisplaySet = () => {
       const data = {
         "ids": userSaved,
       };
-      console.log("savethis")
-      console.log(data)
       const axiosInstance = AxiosInstance(storedUserName, storedPassword)
       try {
         axiosInstance.post(`/cardset/user/${storedUserId}/saved`, data)
           .then(response => {
-            console.log("hddd")
             console.log(response.data);
           })
           .catch(error => {
@@ -113,7 +123,7 @@ const DisplaySet = () => {
             </div>
           </div>
           <div className='card-navigation-element'>
-            <FaRegStar onClick={() => handleSave()} />
+            <FaRegStar className={starStyle} onClick={() => handleSave()} />
           </div>
         </div>
       </div>

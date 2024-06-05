@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AxiosInstance from '../utils/AxiosInstance';
 import { IUser } from '../utils/Interfaces';
-import axios, { AxiosResponse } from 'axios';
-import { IFlashcardSet, IFlashcard } from '../utils/Interfaces';
+import { AxiosResponse } from 'axios';
+import { IFlashcardSet } from '../utils/Interfaces';
 import CardTile from '../components/CardTile';
 
 const Saved = () => {
-  const navigate = useNavigate();
   const storedUserName = localStorage.getItem('username');
   const storedPassword = localStorage.getItem('password');
   const [user, setUser] = useState<IUser>();
@@ -30,13 +29,10 @@ const Saved = () => {
           .catch(error => {
             console.error(error);
           });
-        
       } catch (error) {
           console.error('Błąd:', error);
       }
     }
-
-
   }, []);
 
   const fetchUserSets = async () => {
@@ -52,7 +48,6 @@ const Saved = () => {
           .catch(error => {
             console.error(error);
           });
-        
       } catch (error) {
           console.error('Błąd:', error);
       }
@@ -77,10 +72,8 @@ const Saved = () => {
               Saved Sets
             </div>
             <hr />
-            
           </div>
           <div className='section-cardset-container'>
-
             {userSets?.map((flashcard: IFlashcardSet, index: number) => (
               <CardTile cardSet={flashcard} key={index} onRefresh={removeFlashcardSet}/>
             ))}

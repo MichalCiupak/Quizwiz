@@ -33,3 +33,12 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.star-icon {
+  color: #c99812;
+}
+
+.star-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
