@@ -1,0 +1,35 @@
+.cardtile-container {
+  width: 250px;
+  background-color: #FFC3AE;
+  margin: 20px;
+  border: #a73b13 solid 3px;
+  padding: 20px 10px;
+  border-radius: 20px;
+}
+
+.cardtile-main-content {
+  display: flex;
+}
+
+.cardtile-name {
+  width: 150px;
+  overflow: hidden;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.cardtile-name:hover {
+  cursor: pointer;
+  color: #a73b13 ;
+}
+
+.bin-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.cardtile-icons-container {
+  width: 100px;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-evenly;
+}
