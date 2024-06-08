@@ -174,3 +174,8 @@ input:focus {
   border-radius: 30px;
   border: #a73b13 solid 2px;
 }
+
+.section-cardset-container {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -2,7 +2,7 @@ export interface IUser {
   id: string;
   username: string;
   email: string;
-  savedCardSets: any; 
+  savedCardSets: string[]; 
 }
 
 export interface IFlashcard {
@@ -11,6 +11,7 @@ export interface IFlashcard {
 }
 
 export interface IFlashcardSet {
+  id: string;
   name: string;
   category: string;
   keywords: string[];

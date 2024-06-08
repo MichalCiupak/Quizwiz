@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 import './Card.css'
+import { IFlashcard } from '../utils/Interfaces';
 
+type Props = {
+  flashcard: IFlashcard;
+}
 
-
-const Card = () => {
+const Card: React.FC<Props> = ({flashcard}) => {
+  console.log(flashcard)
   const [isFirstPage, setIsFirstPage] = useState<boolean>(true);
   const [animate, setAnimate] = useState<string>('card-main-container');
-  const [cardText, setCardText] = useState<string>('Lorem ipsum');
+  const [cardText, setCardText] = useState<string>(flashcard.question);
+
+
   const rotate = () => {
     if (isFirstPage) {
-      
       setAnimate('card-main-container-animate')
       setTimeout(() => {
         setIsFirstPage(!isFirstPage);
-        setCardText('Marusak')
+        setCardText(flashcard.answer)
         setAnimate('card-main-container');
       }, 1000);
-
     }
     else {
-      
       setAnimate('card-main-container-animate')
       setTimeout(() => {
         setIsFirstPage(!isFirstPage);
-        setCardText('Lorem ipsum')
+        setCardText(flashcard.question)
         setAnimate('card-main-container');
       }, 1000);
     }
   }
+  
   return (
     <div className={animate} onClick={() => rotate()}>
       <div className='card-text'>

@@ -1,12 +1,13 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import './Containers.css'
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { IFlashcard, IFlashcardSet } from '../utils/Interfaces';
 import AxiosInstance from '../utils/AxiosInstance';
 
 const CreateSet = () => {
+  const navigate = useNavigate();
   const storedUserName = localStorage.getItem('username');
   const storedPassword = localStorage.getItem('password');
   const [name, setName] = useState('');
@@ -14,6 +15,22 @@ const CreateSet = () => {
   const [keywords, setKeywords] = useState(['']);
   const [flashcards, setFlashcards] = useState([{ question: '', answer: '' }]);
   const [isDataInvalid, setIsDataInvalid] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [id, setId] = useState('');
+
+  useEffect(() => {
+    const storedFlashcardSets = localStorage.getItem('flashcardToEdit');
+    if (storedFlashcardSets) {
+      const flashcardSet: IFlashcardSet = JSON.parse(storedFlashcardSets);
+      setName(flashcardSet.name)
+      setCategory(flashcardSet.category)
+      setKeywords(flashcardSet.keywords)
+      setFlashcards(flashcardSet.flashcards);
+      setId(flashcardSet.id)
+      setIsEdit(true);
+      localStorage.removeItem('flashcardToEdit');
+    }
+  }, []);
 
   const handleAddFlashcard = () => {
     setFlashcards([...flashcards, { question: '', answer: '' }]);
@@ -36,13 +53,27 @@ const CreateSet = () => {
       };
       const axiosInstance = AxiosInstance(storedUserName, storedPassword)
       try {
-        axiosInstance.post('/flashcards', data)
+        if (isEdit){
+          axiosInstance.put(`/cardset/${id}`, data)
           .then(response => {
             console.log(response.data);
+            setIsEdit(false)
+            navigate('/Profile')
           })
-        .catch(error => {
-          console.error(error);
-        });
+          .catch(error => {
+            console.error(error);
+          });
+        }
+        else {
+          axiosInstance.post('/cardset', data)
+          .then(response => {
+            console.log(response.data);
+            navigate('/Profile')
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        }
       } catch (error) {
         console.error('Error:', error);
         setIsDataInvalid(true)
@@ -51,9 +82,6 @@ const CreateSet = () => {
     else {
       setIsDataInvalid(true)
     }
-    
-
-    
   };
 
   return (
@@ -67,7 +95,6 @@ const CreateSet = () => {
             </div>
             <hr />
           </div>
-          
         </div>
         <div className='container-create-card-form'>
           <form onSubmit={handleSubmit}>
@@ -100,7 +127,6 @@ const CreateSet = () => {
                 placeholder='Enter the keywords' 
               />
             </div >
-            
             {flashcards.map((flashcard, index) => (
               <div key={index} className='single-card-create-container'>
                 <h2>Flashcard {index + 1}</h2>
@@ -135,7 +161,6 @@ const CreateSet = () => {
               <div className='create-card-button' onClick={() => handleAddFlashcard()}>Add Another Flashcard</div>
               <div className='create-card-button-submit' onClick={() => handleSubmit()}>Submit</div>
             </div>
-            
           </form>
         </div>
       </div>
